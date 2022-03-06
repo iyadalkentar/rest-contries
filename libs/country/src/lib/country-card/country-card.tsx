@@ -10,7 +10,7 @@ export interface CountryCardProps {
 export function CountryCard(props: CountryCardProps) {
   const { country } = props;
   return (
-    <Card sx={{ width: 250 }}>
+    <Card sx={{ width: 250, margin: 1 }}>
       <CardMedia
         component="img"
         height="140"

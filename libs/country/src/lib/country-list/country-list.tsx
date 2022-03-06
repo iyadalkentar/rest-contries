@@ -11,12 +11,12 @@ export interface CountryListProps {
 export function CountryList(props: CountryListProps) {
   return (
     <Box
-      padding={2}
       sx={{
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
+        alignItems: 'center',
       }}
     >
       {props.countries.map((c) => (
