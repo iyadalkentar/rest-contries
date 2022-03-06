@@ -5,11 +5,13 @@ import { FilterBar, Header } from '@rest-countries/layout';
 import { Country, getAllCountries } from '@rest-countries/service';
 import { useMemo } from 'react';
 import { useEffect, useState } from 'react';
-import styles from './app.module.scss';
 import CssBaseline from '@mui/material/CssBaseline';
+import { useDispatch, useSelector } from 'react-redux';
+import { portalActions, selectIsDarkMode } from './store/portal.slice';
 
 export function App() {
-  const [isDarkMode, setTheme] = useState(false);
+  const dispatch = useDispatch();
+  const isDarkMode = useSelector(selectIsDarkMode);
   const [countries, setCountries] = useState<Country[]>([]);
   const loadCountries = useEffect(() => {
     getAllCountries().then((c) => setCountries(c));
@@ -23,7 +25,7 @@ export function App() {
       <CssBaseline />
       <Header
         isDarkMode={isDarkMode}
-        onChangeTheme={() => setTheme(!isDarkMode)}
+        onChangeTheme={() => dispatch(portalActions.toggleMode())}
       />
       <FilterBar
         onFilterChange={(e) => console.log(e)}
