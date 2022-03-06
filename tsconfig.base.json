@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@rest-countries/country": ["libs/country/src/index.ts"],
       "@rest-countries/layout": ["libs/layout/src/index.ts"],
       "@rest-countries/service": ["libs/service/src/index.ts"]
     }

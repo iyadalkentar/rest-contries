@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "country": "libs/country",
     "layout": "libs/layout",
     "portal": "apps/portal",
     "portal-e2e": "apps/portal-e2e",
