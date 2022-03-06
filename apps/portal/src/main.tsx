@@ -9,9 +9,16 @@ import {
   STORE_PORTAL_FEATURE_KEY,
   portalReducer,
 } from './app/store/portal.slice';
+import {
+  countriesReducer,
+  STORE_COUNTRIES_FEATURE_KEY,
+} from '@rest-countries/country';
 
 const store = configureStore({
-  reducer: { [STORE_PORTAL_FEATURE_KEY]: portalReducer },
+  reducer: {
+    [STORE_PORTAL_FEATURE_KEY]: portalReducer,
+    [STORE_COUNTRIES_FEATURE_KEY]: countriesReducer,
+  },
   // Additional middleware can be passed to this array
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
   devTools: process.env['NODE_ENV'] !== 'production',

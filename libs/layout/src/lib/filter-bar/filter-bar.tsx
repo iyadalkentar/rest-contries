@@ -11,14 +11,22 @@ import { useState } from 'react';
 
 /* eslint-disable-next-line */
 export interface FilterBarProps {
-  regions: string[];
   onFilterChange: (value: { name: string; region: string }) => void;
 }
 
 export function FilterBar(props: FilterBarProps) {
   const [region, setRegion] = useState('');
   const [name, setName] = useState('');
-  const { regions, onFilterChange } = props;
+  const { onFilterChange } = props;
+  const regions = [
+    'Any',
+    'Europe',
+    'Oceania',
+    'Americas',
+    'Asia',
+    'Africa',
+    'Antarctic',
+  ];
   return (
     <Box
       sx={{ display: 'flex', flexFlow: 'row', justifyContent: 'space-between' }}
