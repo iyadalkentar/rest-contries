@@ -27,6 +27,7 @@ export function FilterBar(props: FilterBarProps) {
         sx={{ m: 1 }}
         id="outlined-basic"
         variant="outlined"
+        data-testid="searchElm"
         InputProps={{
           startAdornment: <SearchIcon />,
         }}
@@ -44,6 +45,7 @@ export function FilterBar(props: FilterBarProps) {
         <Select
           id="region"
           label="Region"
+          data-testid="regionElm"
           value={region}
           onChange={(e) => {
             setRegion('' + e.target.value);
