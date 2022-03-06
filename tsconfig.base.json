@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@rest-countries/layout": ["libs/layout/src/index.ts"],
+      "@rest-countries/service": ["libs/service/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
