@@ -1,5 +1,5 @@
 import { getAllCountries, API_URL } from './service';
-import * as countries from './countries.json';
+import countries from '../../../api-response/country-list.json';
 
 import axios from 'axios';
 jest.mock('axios');

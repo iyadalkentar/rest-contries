@@ -9,21 +9,21 @@ export interface HeaderProps {
 }
 
 export function Header(props: HeaderProps) {
-  const {isDarkMode, onChangeTheme} = props;
+  const { isDarkMode, onChangeTheme } = props;
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="sticky">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Where in the world?
           </Typography>
-          <Button 
-            startIcon={<DarkModeOutlinedIcon />} 
+          <Button
+            startIcon={<DarkModeOutlinedIcon />}
             color="inherit"
             onClick={() => onChangeTheme()}
           >
-            {isDarkMode ? 'Light Mode': 'Dark Mode'}
-            </Button>
+            {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+          </Button>
         </Toolbar>
       </AppBar>
     </Box>

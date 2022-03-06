@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import * as country from './country.json';
+import country from '../../../../api-response/country.json';
 import CountryCard from './country-card';
 
 
