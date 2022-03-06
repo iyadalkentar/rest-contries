@@ -1,11 +1,12 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { createTheme, ThemeProvider } from '@mui/material';
 import { CountryList } from '@rest-countries/country';
-import { Header } from '@rest-countries/layout';
+import { FilterBar, Header } from '@rest-countries/layout';
 import { Country, getAllCountries } from '@rest-countries/service';
 import { useMemo } from 'react';
 import { useEffect, useState } from 'react';
 import styles from './app.module.scss';
+import CssBaseline from '@mui/material/CssBaseline';
 
 export function App() {
   const [isDarkMode, setTheme] = useState(false);
@@ -19,9 +20,14 @@ export function App() {
   );
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Header
         isDarkMode={isDarkMode}
         onChangeTheme={() => setTheme(!isDarkMode)}
+      />
+      <FilterBar
+        onFilterChange={(e) => console.log(e)}
+        regions={['ab', 'cd']}
       />
       <CountryList countries={countries} />
     </ThemeProvider>
