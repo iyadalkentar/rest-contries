@@ -33,7 +33,6 @@ export function App() {
     [isDarkMode]
   );
   const countries = useMemo(() => {
-    console.log(tag);
     return tag && tag.trim() !== ''
       ? allCountries.filter((c) =>
           c.name.common.match(
@@ -74,6 +73,9 @@ export function App() {
                 : fetchCountriesByRegion(e.region)
             );
           }
+        }}
+        onNameChange={(e) => {
+          if (tag !== e) setTag(e);
         }}
       />
       {renderList()}

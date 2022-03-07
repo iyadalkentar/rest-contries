@@ -11,13 +11,14 @@ import { useState } from 'react';
 
 /* eslint-disable-next-line */
 export interface FilterBarProps {
+  onNameChange?: (value: string) => void;
   onFilterChange: (value: { name: string; region: string }) => void;
 }
 
 export function FilterBar(props: FilterBarProps) {
   const [region, setRegion] = useState('Any');
   const [name, setName] = useState('');
-  const { onFilterChange } = props;
+  const { onFilterChange, onNameChange } = props;
   const regions = [
     'Any',
     'Europe',
@@ -40,7 +41,10 @@ export function FilterBar(props: FilterBarProps) {
           startAdornment: <SearchIcon />,
         }}
         value={name}
-        onChange={(e) => setName(e.target.value)}
+        onChange={(e) => {
+          setName(e.target.value);
+          if (onNameChange) onNameChange(e.target.value);
+        }}
         onKeyPress={(e) => {
           if (e.code === 'Enter') {
             onFilterChange({ name: name, region: region });
