@@ -6,20 +6,22 @@ import {
   EntityState,
   PayloadAction,
 } from '@reduxjs/toolkit';
-import { Country, getAllCountries, getCountriesByRegion } from '@rest-countries/service';
+import {
+  Country,
+  getAllCountries,
+  getCountriesByRegion,
+} from '@rest-countries/service';
 
 export const STORE_COUNTRIES_FEATURE_KEY = 'countries';
 
-
 export interface CountriesState extends EntityState<Country> {
   loadingStatus: 'not loaded' | 'loading' | 'loaded' | 'error';
-  error: string|null;
+  error: string | null;
 }
 
-export const countriesAdapter =
-  createEntityAdapter<Country>({
-    selectId: e => e.cca3
-  });
+export const countriesAdapter = createEntityAdapter<Country>({
+  selectId: (e) => e.cca3,
+});
 
 export const fetchCountries = createAsyncThunk(
   'countries/fetchAll',
@@ -54,30 +56,21 @@ export const countriesSlice = createSlice({
       })
       .addCase(
         fetchCountries.fulfilled,
-        (
-          state: CountriesState,
-          action: PayloadAction<Country[]>
-        ) => {
+        (state: CountriesState, action: PayloadAction<Country[]>) => {
           countriesAdapter.setAll(state, action.payload);
           state.loadingStatus = 'loaded';
         }
       )
-      .addCase(
-        fetchCountries.rejected,
-        (state: CountriesState, action) => {
-          state.loadingStatus = 'error';
-          state.error = action.error.message??'';
-        }
-      )
+      .addCase(fetchCountries.rejected, (state: CountriesState, action) => {
+        state.loadingStatus = 'error';
+        state.error = action.error.message ?? '';
+      })
       .addCase(fetchCountriesByRegion.pending, (state: CountriesState) => {
         state.loadingStatus = 'loading';
       })
       .addCase(
         fetchCountriesByRegion.fulfilled,
-        (
-          state: CountriesState,
-          action: PayloadAction<Country[]>
-        ) => {
+        (state: CountriesState, action: PayloadAction<Country[]>) => {
           countriesAdapter.setAll(state, action.payload);
           state.loadingStatus = 'loaded';
         }
@@ -86,7 +79,7 @@ export const countriesSlice = createSlice({
         fetchCountriesByRegion.rejected,
         (state: CountriesState, action) => {
           state.loadingStatus = 'error';
-          state.error = action.error.message??'';
+          state.error = action.error.message ?? '';
         }
       );
   },
@@ -97,14 +90,10 @@ export const countriesActions = countriesSlice.actions;
 
 const { selectAll, selectEntities } = countriesAdapter.getSelectors();
 
-export const getCountriesState = (
-  rootState: any
-): CountriesState => rootState[STORE_COUNTRIES_FEATURE_KEY];
+export const getCountriesState = (rootState: any): CountriesState =>
+  rootState[STORE_COUNTRIES_FEATURE_KEY];
 
-export const selectAllCountries = createSelector(
-  getCountriesState,
-  selectAll
-);
+export const selectAllCountries = createSelector(getCountriesState, selectAll);
 
 export const selectCountriesEntities = createSelector(
   getCountriesState,
@@ -113,11 +102,10 @@ export const selectCountriesEntities = createSelector(
 
 export const selectLoadingStatus = createSelector(
   getCountriesState,
-  s => s.loadingStatus
+  (s) => s.loadingStatus
 );
 
 export const selectLoadingError = createSelector(
   getCountriesState,
-  s => s.error
+  (s) => s.error
 );
-

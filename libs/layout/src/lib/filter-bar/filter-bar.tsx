@@ -15,7 +15,7 @@ export interface FilterBarProps {
 }
 
 export function FilterBar(props: FilterBarProps) {
-  const [region, setRegion] = useState('');
+  const [region, setRegion] = useState('Any');
   const [name, setName] = useState('');
   const { onFilterChange } = props;
   const regions = [
